@@ -22,7 +22,57 @@ function getHumanChoice() {
     let humanInput;
     do {
         humanInput = prompt('Pick one: rock, paper, scissors').toLowerCase();
-    } while (choices.includes(humanInput));
+    } while (!choices.includes(humanInput));
     return humanInput;
 } 
-console.log(humanInput)
+
+//Game will keep track of players score with humanScore and computerScore
+
+let humanScore= 0
+let computerScore= 0
+
+//Game is played round by round, shown with play Round
+
+function playRound() {
+    const humanInput=getHumanChoice();
+    const computerInput=getComputerChoice();
+    if (humanInput === 'rock') {
+        if (computerInput === 'paper') {
+            computerScore++;
+            alert('Computer wins! Paper beats Rock')
+        }
+        else if (computerInput == 'scissor') {
+            humanScore++;
+            alert('You win! Rock beats Scissors')
+        }
+        else {
+            alert('Draw')
+        }
+    }
+    if (humanInput === 'paper') {
+        if (computerInput === 'scissor') {
+            computerScore++;
+            alert('Computer wins! Scissors beats paper')
+        }
+        else if (computerInput === 'rock') {
+            humanScore++;
+            alert('You win! Paper beats rock')
+        }
+        else {
+            alert('Draw')
+        }
+    }
+    if (humanInput === 'scissor') {
+        if (computerInput === 'rock') {
+            computerScore++;
+            alert('Computer wins! Rock beats scissor')
+        }
+        else if (computerInput === 'paper') {
+            humanScore++;
+            alert ('You win! Scissor beats paper')
+        }
+        else {
+            alert ('Draw')
+        }
+    }
+}
