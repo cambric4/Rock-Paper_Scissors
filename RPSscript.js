@@ -6,10 +6,10 @@
 const choices = ("Rock", "Paper", "Scissors");
 
 function getComputerChoice() {
-    let computerSelection = Math.floor(Math.random()*3);
-    if (computerSelection === 0) {
+    let computerSelection = Math.floor(Math.random());
+    if (computerSelection < 0.34) {
         return "rock";
-    } else if (computerSelection === 1) {
+    } else if (computerSelection <= 0.67) {
         return "paper";
     } else {
         return "scissors";
@@ -39,9 +39,7 @@ let computerScore= 0
 //Game is played round by round, shown with play Round
 //playGame function to make it all work
 
-function playRound() {
-    const humanInput=getHumanChoice();
-    const computerInput=getComputerChoice();
+function playRound (humanInput, computerInput) {
     if (humanInput === 'rock') {
         if (computerInput === 'paper') {
             computerScore++;
@@ -83,7 +81,7 @@ function playRound() {
     }
 }
 
-const humanInput= getHumanChoice();
+const humanInput = getHumanChoice();
 const computerInput = getComputerChoice();
 
 playRound (humanInput, computerInput);
@@ -93,7 +91,8 @@ function playGame() {
         const humanInput= getHumanChoice();
         const computerInput = getComputerChoice();
         const winner = playRound(humanInput, computerInput);
-        alert( 'You Chose: ${humanInput)}\nComputer chose: ${computerInput}\nWinner: ${winner}\nYour Score: ${humanScore}\nComputer score: ${computerScore}');
+        alert( 'You Chose: ${humanInput}\nComputer chose: ${computerInput}\nWinner: ${winner}\nYour Score: ${humanScore}\nComputer score: ${computerScore}'
+        );
     }
 }
 
