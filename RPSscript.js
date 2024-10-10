@@ -6,10 +6,10 @@
 const choices = ("Rock", "Paper", "Scissors");
 
 function getComputerChoice() {
-    let computerSelection = Math.floor(Math.random());
-    if (computerSelection < 0.34) {
+    let random = Math.random();
+    if (random < 0.34) {
         return "rock";
-    } else if (computerSelection <= 0.67) {
+    } else if (random <= 0.67) {
         return "paper";
     } else {
         return "scissors";
@@ -19,80 +19,63 @@ function getComputerChoice() {
 // Game to be played by human player. Write a function that takes user choice and returns it
 
 function getHumanChoice() {
-    const humanSelection = prompt('Choose Rock, Paper or Scissors:').toLowerCase();
-    if ( humanSelection === 'rock'||
-         humanSelection === 'paper'||
-         humanSelection === 'scissors'
+    const humanChoice = prompt('Choose Rock, Paper or Scissors:').toLowerCase();
+    if ( humanChoice === 'rock'||
+         humanChoice === 'paper'||
+         humanChoice === 'scissors'
     ) {
-        return humanSelection.charAt(0).toUpperCase() + humanSelection.slice(1);
+        return humanChoice
     } else {
         alert('Sorry, Invalid Choice! Please try again!');
         return getHumanChoice();
     }
 }
 
-//Game will keep track of players score with humanScore and computerScore
-
-let humanScore= 0
-let computerScore= 0
-
 //Game is played round by round, shown with play Round
-//playGame function to make it all work
 
 function playRound (humanInput, computerInput) {
-    if (humanInput === 'rock') {
-        if (computerInput === 'paper') {
-            computerScore++;
-            alert('Computer wins! Paper beats Rock')
-        }
-        else if (computerInput == 'scissor') {
-            humanScore++;
-            alert('You win! Rock beats Scissors')           
-        }
-        else {
-            alert('Draw')
-        }
+   if (humanInput === computerInput) {
+    alert('You tied ${humanInput} = ${computerInput}.');
+    return "Tie";
+   }
+   else if (humanInput === "rock" && computerInput === "scissors" ||
+            humanInput === "paper" && computerInput === "rock" ||
+            humanInput === "scissors" && computerInput === "paper") {
+        alert ('You win! ${humanInput) beats ${computerInput.');
+        return "win";
     }
-    if (humanInput === 'paper') {
-        if (computerInput === 'scissor') {
-            computerScore++;
-            alert('Computer wins! Scissors beats paper')
-        }
-        else if (computerInput === 'rock') {
-            humanScore++;
-            alert('You win! Paper beats rock')
-        }
-        else {
-            alert('Draw')
-        }
-    }
-    if (humanInput === 'scissor') {
-        if (computerInput === 'rock') {
-            computerScore++;
-            alert('Computer wins! Rock beats scissor')
-        }
-        else if (computerInput === 'paper') {
-            humanScore++;
-            alert ('You win! Scissor beats paper')
-        }
-        else {
-            alert ('Draw')
-        }
+    else {
+        alert('You lose! ${humanInput} loses to ${computerInput}.');
+        return "loss";
     }
 }
 
-const humanInput = getHumanChoice();
-const computerInput = getComputerChoice();
 
-playRound (humanInput, computerInput);
+
+// playGame function to make it all work, with only 5 rounds
 
 function playGame() {
-    while (humanScore < 5 && computerScore <5) {
-        const humanInput= getHumanChoice();
-        const computerInput = getComputerChoice();
-        const winner = playRound(humanInput, computerInput);
-        alert( 'You Chose: ${humanInput}\nComputer chose: ${computerInput}\nWinner: ${winner}\nYour Score: ${humanScore}\nComputer score: ${computerScore}'
-        );
+    let humanScore = 0;
+    let computerScore = 0;
+    for (let i = 0; i < 5; i++) {
+        let humanInput = getHumanChoice();
+        let computerInput = getComputerChoice();
+        let outcome = playRound(humanInput, computerInput);
+        if (outcome === "win") {
+            humanScore++;
+        }
+        if (outcome === "loss") {
+            computerScore++;
+        }
+    }
+    if (humanScore === computerScore) {
+        alert ('The game was a tie!\nScore: ${humanScore} - ${computerScore}.');
+    }
+    else if (humanScore > computerScore) {
+        alert ( 'Congratulations you won!\nScore: ${humanScore} - ${computerScore}.');
+    }
+    else {
+        alert ('Sorry you lose!\nScore: ${humanScore} - ${computerScore}.');
     }
 }
 
