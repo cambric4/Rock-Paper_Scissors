@@ -56,25 +56,25 @@ function playGame() {
     let humanScore = 0;
     let computerScore = 0;
     for (let i = 0; i < 5; i++) {
-        const humanInput=getHumanChoice();
-        const computerInput=getComputerChoice();
+        let humanInput = getHumanChoice();
+        let computerInput = getComputerChoice();
         let outcome = playRound(humanInput, computerInput);
         if (outcome === `win`) {
-            return humanScore++;
+            humanScore++;
         }
         else if (outcome === `loss`) {
-            return computerScore++;
+            computerScore++;
         }
     }
     if (humanScore === computerScore) {
-        alert(`The game was a tie!\nScore: ${humanScore} - ${computerScore}`)
+        alert(`The game was a tie!\nScore: ${humanScore} - ${computerScore}`);
     }
     else if (humanScore > computerScore) {
-        alert (`Congratulations you won!\nScore: ${humanScore} - ${computerScore}`)
+        alert (`Congratulations you won!\nScore: ${humanScore} - ${computerScore}`);
     }
     else {
-        alert (`Sorry you lose! \nScore: ${humanScore} - ${computerScore}`)
+        alert (`Sorry you lose!\nScore: ${humanScore} - ${computerScore}`);
     }
 }
 
-playGame()
+playGame();
