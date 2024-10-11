@@ -3,31 +3,31 @@
 // Math.random returns a random number that is >==0 and < 1, Use this to your advantage
 // Test function returns with console.log()
 
-const choices = ("Rock", "Paper", "Scissors");
+const choices = (`rock`, `paper`, `scissors`);
 
 function getComputerChoice() {
     let random = Math.random();
     if (random < 0.34) {
-        return "rock";
+        return `rock`;
     } else if (random <= 0.67) {
-        return "paper";
+        return `paper`;
     } else {
-        return "scissors";
+        return `scissors`;
     }
 }
 
 // Game to be played by human player. Write a function that takes user choice and returns it
 
 function getHumanChoice() {
-    const humanChoice = prompt('Choose Rock, Paper or Scissors:').toLowerCase();
-    if ( humanChoice === 'rock'||
-         humanChoice === 'paper'||
-         humanChoice === 'scissors'
+    const humanChoice = prompt(`Choose Rock, Paper or Scissors:`).toLowerCase();   
+    if ( humanChoice === `rock`||
+         humanChoice === `paper`||
+         humanChoice === `scissors`
     ) {
-        return humanChoice
+    return humanChoice
     } else {
-        alert('Sorry, Invalid Choice! Please try again!');
-        return getHumanChoice();
+    alert(`Sorry, Invalid Choice! Please try again!`);
+    return getHumanChoice();
     }
 }
 
@@ -35,22 +35,20 @@ function getHumanChoice() {
 
 function playRound (humanInput, computerInput) {
    if (humanInput === computerInput) {
-    alert('You tied ${humanInput} = ${computerInput}.');
-    return "Tie";
+    alert(`You tied \n ${humanInput} = ${computerInput}.`);
+    return `Tie`;
    }
-   else if (humanInput === "rock" && computerInput === "scissors" ||
-            humanInput === "paper" && computerInput === "rock" ||
-            humanInput === "scissors" && computerInput === "paper") {
-        alert ('You win! ${humanInput) beats ${computerInput.');
-        return "win";
+   else if (humanInput === `rock` && computerInput === `scissors` ||
+            humanInput === `paper` && computerInput === `rock` ||
+            humanInput === `scissors` && computerInput === `paper`) {
+        alert (`You win! \n${humanInput} beats \n${computerInput}.`);
+        return `win`;
     }
     else {
-        alert('You lose! ${humanInput} loses to ${computerInput}.');
-        return "loss";
+        alert(`You lose! \n${humanInput} loses to ${computerInput}.`);
+        return `loss`;
     }
 }
-
-
 
 // playGame function to make it all work, with only 5 rounds
 
@@ -58,25 +56,25 @@ function playGame() {
     let humanScore = 0;
     let computerScore = 0;
     for (let i = 0; i < 5; i++) {
-        let humanInput = getHumanChoice();
-        let computerInput = getComputerChoice();
+        const humanInput=getHumanChoice();
+        const computerInput=getComputerChoice();
         let outcome = playRound(humanInput, computerInput);
-        if (outcome === "win") {
-            humanScore++;
+        if (outcome === `win`) {
+            return humanScore++;
         }
-        if (outcome === "loss") {
-            computerScore++;
+        else if (outcome === `loss`) {
+            return computerScore++;
         }
     }
     if (humanScore === computerScore) {
-        alert ('The game was a tie!\nScore: ${humanScore} - ${computerScore}.');
+        alert(`The game was a tie!\nScore: ${humanScore} - ${computerScore}`)
     }
     else if (humanScore > computerScore) {
-        alert ( 'Congratulations you won!\nScore: ${humanScore} - ${computerScore}.');
+        alert (`Congratulations you won!\nScore: ${humanScore} - ${computerScore}`)
     }
     else {
-        alert ('Sorry you lose!\nScore: ${humanScore} - ${computerScore}.');
+        alert (`Sorry you lose! \nScore: ${humanScore} - ${computerScore}`)
     }
 }
 
-playGame();
+playGame()
