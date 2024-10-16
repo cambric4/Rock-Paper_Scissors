@@ -4,6 +4,11 @@
 // Test function returns with console.log()
 
 const choices = (`rock`, `paper`, `scissors`);
+const humanDisplay = document.getElementById(`humanDisplay`);
+const computerDisplay = document.getElementById(`computerDisplay`);
+const resultDisplay = document.getElementById(`resultDisplay`);
+const humanscoreDisplay = document.getElementById(`humanscoreDisplay`);
+const computerscoreDisplay = document.getElementById(`computerscoreDisplay`);
 
 function getComputerChoice() {
     let random = Math.random();
@@ -75,6 +80,27 @@ function playGame() {
     else {
         alert (`Sorry you lose!\nScore: ${humanScore} - ${computerScore}`);
     }
+}
+
+const humanInput = getHumanChoice();
+const computerInput = getComputerChoice();
+const outcome = playRound(humanInput,computerInput);
+humanDisplay.textContent = `Human: ${humanInput}`;
+computerDisplay.textContent = `Computer: ${computerInput}`;
+resultDisplay.textContent = outcome;
+
+resultDisplay.classList.remove(`greenText`,`redText`);
+switch(outcome) {
+    case `win`:
+        resultDisplay.classList.add(`greenText`);
+        humanScore++;
+        humanscoreDisplay.textContent = humanScore;
+        break;
+    case `lose`;
+        resultDisplay.classList.add(`redText`);
+        computerScore++;
+        computerscoreDisplay.textContent = computerScore;
+        break;
 }
 
 playGame();

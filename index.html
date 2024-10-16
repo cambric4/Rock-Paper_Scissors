@@ -6,6 +6,22 @@
         <title>Rock Paper Scissors Project</title>
     </head>
     <body>
+        <h1>Rock Paper Scissors</h1>
+        <div id="choices">
+            <button onclick="getHumanChoice(`rock`)">🤛</button>
+            <button onclick="getHumanChoice(`paper`)">🫲</button>
+            <button onclick="getHumanChoice(`scissors`)">✌️</button>
+        </div>
+        <div id="humanDisplay">Human:</div>
+        <div id="computerDisplay">Computer:</div>
+        <div id="resultDisplay"></div>
+        <div class="scoreDisplay">Human Score:
+            <span id="humanscoreDisplay">0</span>
+        </div>
+        <div class="scoreDisplay">Computer Score:
+            <span id="computerscoreDisplay">0</span>
+        </div>
+
         <script src="RPSscript.js"></script>
     </body>
 </html>
