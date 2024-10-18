@@ -1,10 +1,13 @@
 
 const choices = (`rock`, `paper`, `scissors`);
-const humanDisplay = document.getElementById(`humanDisplay`);
-const computerDisplay = document.getElementById(`computerDisplay`);
-const outcomeDisplay = document.getElementById(`outcomeDisplay`);
-const humanscoreDisplay = document.getElementById(`humanscoreDisplay`);
-const computerscoreDisplay = document.getElementById(`computerscoreDisplay`);
+const humanSelection = ''
+const humanDisplay = document.getElementById("humanDisplay");
+const computerDisplay = document.getElementById("computerDisplay");
+const outcomeDisplay = document.getElementById("outcomeDisplay");
+const humanscoreDisplay = document.getElementById("humanscoreDisplay");
+const computerscoreDisplay = document.getElementById("computerscoreDisplay");
+let humanScore = 0;
+let computerScore = 0;
 
 function getComputerChoice() {
     let random = Math.random();
@@ -18,18 +21,13 @@ function getComputerChoice() {
 }
 
 
-function getHumanChoice() {
-    const humanChoice = prompt(`Choose Rock, Paper or Scissors:`).toLowerCase();   
+function getHumanChoice(humanChoice) {   
     if ( humanChoice === `rock`||
          humanChoice === `paper`||
          humanChoice === `scissors`
-    ) {
-    return humanChoice
-    } else {
-    alert(`Sorry, Invalid Choice! Please try again!`);
-    return getHumanChoice();
-    }
-}
+    ){
+        playGame(humanChoice)
+    }}
 
 function playRound (humanInput, computerInput) {
    if (humanInput === computerInput) {
@@ -41,16 +39,14 @@ function playRound (humanInput, computerInput) {
         return `win`;
     }
     else {
-        return `loss`;
+        return `lose`;
     }
 }
 
-function playGame() {
-    let humanInput = getHumanChoice();
+function playGame(humanChoice) {
+    let humanInput = humanChoice
     let computerInput = getComputerChoice();
-    let outcome = playRound();
-    let humanScore = 0;
-    let computerScore = 0;
+    let outcome = playRound(humanInput, computerInput);
     humanDisplay.textContent = `Human: ${humanInput}`;
     computerDisplay.textContent = `Computer: ${computerInput}`;
     outcomeDisplay.textContent = outcome;
@@ -58,7 +54,7 @@ function playGame() {
     outcomeDisplay.classList.remove(`greenText`,`redText`);
     switch (outcome) {
         case `win`: 
-            outcomeDisplay.classList.add(`greenText`);
+            outcomeDisplay.classList.remove(`greenText`);
             humanScore++;
             humanscoreDisplay.textContent = humanScore;
             break;
@@ -68,7 +64,13 @@ function playGame() {
             computerscoreDisplay.textContent = computerScore;
             break;
     }
-    
+    if(humanScore == 5){
+        alert(`You win!`)
+        resetGame();
+    } else if (computerScore == 5) {
+        alert('Computer wins!')
+        resetGame();
+    }
 }
 function resetGame() {
     humanScore = 0;
@@ -80,5 +82,3 @@ function resetGame() {
     outcomeDisplay.textContent = ``;
     outcomeDisplay.classList.remove(`greenText`, `redText`);3
 }
-
-playGame();
