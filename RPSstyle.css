@@ -1,0 +1,36 @@
+body {
+    background-color: lightblue;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    font-size: 75px;
+}
+
+p {
+    font-size: 30px;
+}
+
+button {
+    font-size: 45px;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 20px;
+}
+
+#humanDisplay {
+    font-size: 30px;
+}
+
+#computerDisplay {
+    font-size: 30px;
+}
+
+#outcomeDisplay {
+    font-size: 30px;
+}
+
+.scoreDisplay {
+    font-size: 40px;
+}
